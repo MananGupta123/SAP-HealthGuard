@@ -4,3 +4,6 @@ buildCommand = "cd backend && npm install && npm run build"
 
 [deploy]
 startCommand = "cd backend && npm start"
+
+[phases.setup]
+nixPkgs = ["nodejs"]
