@@ -1,4 +1,4 @@
-# SAP HealthGuard (mini)
+# SAP HealthGuard
 
 AI-powered SAP incident triage and prediction system with agentic analysis, risk scoring, and automated playbook generation.
 
