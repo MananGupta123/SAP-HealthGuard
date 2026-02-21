@@ -1,7 +1,19 @@
 // Database schema using sql.js (pure JS SQLite - no native compilation needed)
 import * as fs from 'fs';
 import * as path from 'path';
-import initSqlJs, { Database as SqlJsDatabase } from 'sql.js';
+import initSqlJs from 'sql.js';
+
+interface SqlJsDatabase {
+  run(sql: string, params?: any[] | { [key: string]: any }): unknown;
+  prepare(sql: string, params?: any[] | object): {
+    bind(values?: any[] | object): boolean;
+    step(): boolean;
+    getAsObject(params?: any[] | object): { [key: string]: any };
+    free(): boolean;
+  };
+  export(): Uint8Array;
+  getRowsModified(): number;
+}
 
 const DB_PATH = process.env.DB_PATH || './data/healthguard.db';
 
@@ -232,4 +244,3 @@ export function updateEscalationStatus(escalationId: string, status: string, req
 
 // Export db for direct access in routes
 export { db };
-
